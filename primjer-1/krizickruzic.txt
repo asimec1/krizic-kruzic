@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+    <html lang="hr">
+    <head>
+        <title>Vježba križić kružić</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+	<style>
+	table tr td {
+		 width:100px;
+		 height:60px;
+		 text-align:center;
+	}
+	body, td, input {
+		font-size:24px;
+	}
+	</style>
+        <body>
+            <div style="padding:10px">
+                <h1>Vježba križić kružić</h1>
+				<p>Odaberi križić ili kružić</p>
+				<?php
+				$igra = array(array("","",""),array("","",""),array("","",""));
+				$odigrano = "";
+				$pobjednik = "";
+				
+				if (!isset($_POST['reset']))
+				{
+		
+				if (isset($_POST['pozicija1odabrano'])){
+					if ($_POST['pozicija1odabrano'] != ''){
+					$igra [0][0] = $_POST['pozicija1odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija2odabrano'])){
+					if ($_POST['pozicija2odabrano'] != ''){
+					$igra [0][1] = $_POST['pozicija2odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija3odabrano'])){
+					if ($_POST['pozicija3odabrano'] != ''){
+					$igra [0][2] = $_POST['pozicija3odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija4odabrano'])){
+					if ($_POST['pozicija4odabrano'] != ''){
+					$igra [1][0] = $_POST['pozicija4odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija5odabrano'])){
+					if ($_POST['pozicija5odabrano'] != ''){
+					$igra [1][1] = $_POST['pozicija5odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija6odabrano'])){
+					if ($_POST['pozicija6odabrano'] != ''){
+					$igra [1][2] = $_POST['pozicija6odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija7odabrano'])){
+					if ($_POST['pozicija7odabrano'] != ''){
+					$igra [2][0] = $_POST['pozicija7odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija8odabrano'])){
+					if ($_POST['pozicija8odabrano'] != ''){
+					$igra [2][1] = $_POST['pozicija8odabrano'];
+				}
+				}
+				if (isset($_POST['pozicija9odabrano'])){
+					if ($_POST['pozicija9odabrano'] != ''){
+					$igra [2][2] = $_POST['pozicija9odabrano'];
+				}
+				}
+					
+					if (isset($_POST['pozicija1']))
+						$igra [0][0] = $odigrano = $_POST['pozicija1'];
+					if (isset($_POST['pozicija2']))
+						$igra [0][1] = $odigrano = $_POST['pozicija2'];
+					if (isset($_POST['pozicija3']))
+						$igra [0][2] = $odigrano = $_POST['pozicija3'];
+					if (isset($_POST['pozicija4']))
+						$igra [1][0] = $odigrano = $_POST['pozicija4'];
+					if (isset($_POST['pozicija5']))
+						$igra [1][1] = $odigrano = $_POST['pozicija5'];
+					if (isset($_POST['pozicija6']))
+						$igra [1][2] = $odigrano = $_POST['pozicija6'];
+					if (isset($_POST['pozicija7']))
+						$igra [2][0] = $odigrano = $_POST['pozicija7'];
+					if (isset($_POST['pozicija8']))
+						$igra [2][1] = $odigrano = $_POST['pozicija8'];
+					if (isset($_POST['pozicija9']))
+						$igra [2][2] = $odigrano = $_POST['pozicija9'];	
+				
+				
+				
+				if (
+				($igra [0][0] != "" && ($igra [0][0] == $igra [0][1]) && ($igra [0][1] == $igra [0][2]))
+				|| ($igra [1][0] != "" && ($igra [1][0] == $igra [1][1]) && ($igra [1][1] == $igra [1][2]))
+				|| ($igra [2][0] != "" && ($igra [2][0] == $igra [2][1]) && ($igra [2][1] == $igra [2][2]))
+				|| ($igra [0][0] != "" && ($igra [0][0] == $igra [1][0]) && ($igra [1][0] == $igra [2][0]))
+				|| ($igra [0][1] != "" && ($igra [0][1] == $igra [1][1]) && ($igra [1][1] == $igra [2][1]))
+				|| ($igra [0][2] != "" && ($igra [0][2] == $igra [1][2]) && ($igra [1][2] == $igra [2][2]))
+				|| ($igra [0][0] != "" && ($igra [0][0] == $igra [1][1]) && ($igra [1][1] == $igra [2][2]))
+				|| ($igra [0][2] != "" && ($igra [0][2] == $igra [1][1]) && ($igra [1][1] == $igra [2][0]))
+				)
+				{
+				$pobjednik = "Igra je gotova. Pobjednik je " . $odigrano;
+				$odigrano = "kraj";
+				}
+				}
+				?>
+				
+				<form method="post" action="">
+                    <table border="1" cellpadding="10">
+					<tr>
+					<td>
+					<?php
+					if ($igra [0][0] == "") {
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija1" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija1" value="O" />
+					'; }
+					else print $igra [0][0];
+					?>
+					<input type="hidden" name="pozicija1odabrano" value='<?php print $igra [0][0]; ?>' />
+					</td>
+					<td>
+					<?php
+					if ($igra [0][1] == "") {
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija2" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija2" value="O" />
+					'; }
+					else print $igra [0][1];
+					?>
+					<input type="hidden" name="pozicija2odabrano" value='<?php print $igra [0][1]; ?>' />
+					</td>
+					<td>
+					<?php
+					if ($igra [0][2] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija3" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija3" value="O" />
+					'; }
+					else print $igra [0][2];
+					?>
+					<input type="hidden" name="pozicija3odabrano" value='<?php print $igra [0][2]; ?>' />
+					</td>
+					</tr>
+					<tr>
+					<td>
+					<?php
+					if ($igra [1][0] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija4" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija4" value="O" />
+					'; }
+					else print $igra [1][0];
+					?>
+					<input type="hidden" name="pozicija4odabrano" value='<?php print $igra [1][0]; ?>' />
+					</td>
+					<td>
+					<?php
+					if ($igra [1][1] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija5" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija5" value="O" />
+					'; }
+					else print $igra [1][1];
+					?>
+					<input type="hidden" name="pozicija5odabrano" value='<?php print $igra [1][1]; ?>' />
+					</td>
+					<td>
+					<?php
+					if ($igra [1][2] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija6" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija6" value="O" />
+					'; }
+					else print $igra [1][2];
+					?>
+					<input type="hidden" name="pozicija6odabrano" value='<?php print $igra [1][2]; ?>' />
+					</td>
+					</tr>
+					<tr>
+					<td>
+					<?php
+					if ($igra [2][0] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija7" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija7" value="O" />
+					'; }
+					else print $igra [2][0];
+					?>
+					<input type="hidden" name="pozicija7odabrano" value='<?php print $igra [2][0]; ?>' />
+					</td>
+					<td>
+					<?php
+					if ($igra [2][1] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija8" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija8" value="O" />
+					'; }
+					else print $igra [2][1];
+					?>
+					<input type="hidden" name="pozicija8odabrano" value='<?php print $igra [2][1]; ?>' />
+					</td>
+					<td>
+					<?php
+					if ($igra [2][2] == ""){
+					if ($odigrano == "" || $odigrano == "O")
+					print '
+					<input type="submit" name="pozicija9" value="X" />
+					';
+					if ($odigrano == "" || $odigrano == "X")
+					print '
+					<input type="submit" name="pozicija9" value="O" />
+					'; }
+					else print $igra [2][2];
+					?>
+					<input type="hidden" name="pozicija9odabrano" value='<?php print $igra [2][2]; ?>' />
+					</td>
+					</tr>
+					</table>
+					<br>
+					<br>
+					<input type="submit" name="reset" value="Ponovi igru" />
+					<br>
+					<br>
+					<?php print $pobjednik; ?>
+                </form>
+            </div>
+        </body>
+    </html>
